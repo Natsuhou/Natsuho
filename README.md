@@ -1,2 +1,2 @@
-# Gems-and-Glory
-Discord bot for dungeon thing
+# Natsuho
+Budget discord bot that is still in development :(
