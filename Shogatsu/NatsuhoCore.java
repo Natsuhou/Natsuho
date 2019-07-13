@@ -1,13 +1,12 @@
 package me.Shogatsu;
 
-import me.Shogatsu.commands.Incomplete.CreateAccount;
-import me.Shogatsu.commands.Live.Demo;
-import me.Shogatsu.commands.Live.ChangeBotName;
-import me.Shogatsu.commands.Live.ServerInfo;
-import me.Shogatsu.commands.Live.MusicCommands.Play;
-import me.Shogatsu.commands.Live.WhoIs;
-import me.Shogatsu.commands.Live.Shutdown;
-import me.Shogatsu.commands.Live.MusicCommands.Skip;
+import me.Shogatsu.commands.Account.UpdateAccount;
+import me.Shogatsu.commands.ChangeBotName;
+import me.Shogatsu.commands.ServerInfo;
+import me.Shogatsu.commands.Music.Play;
+import me.Shogatsu.commands.WhoIs;
+import me.Shogatsu.commands.Shutdown;
+import me.Shogatsu.commands.Music.Skip;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import net.dv8tion.jda.core.AccountType;
@@ -45,17 +44,16 @@ public class NatsuhoCore extends ListenerAdapter {
       // Command Client Builder (https://github.com/jagrosh)
       CommandClientBuilder builder = new CommandClientBuilder()
           .setOwnerId("381773847357161482")
-          .setPrefix("'")
+          .setPrefix("`")
           .setHelpWord("help")
           .setGame(Game.playing(startupMsg[rng]))
           .addCommands(
                   //General Server Commands
-                  new Demo(),
                   new ServerInfo(),
                   new Shutdown(),
                   new WhoIs(),
                   //Game
-                  new CreateAccount(),
+                  new UpdateAccount(),
                   new ChangeBotName(),
                   //Natsuho Music
                   new Play(),
