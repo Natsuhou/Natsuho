@@ -23,7 +23,6 @@ public class NatsuhoMongo {
 
 
     public NatsuhoMongo(CommandEvent event) {
-        final String uri = "mongodb+srv://Shogatsu:Thewonderwaffledg2@cluster0-lzh9e.mongodb.net/test?retryWrites=true";
         this.cUri = new MongoClientURI(uri);
         this.mc = new MongoClient(cUri);
         this.db = mc.getDatabase("Natsuho");
