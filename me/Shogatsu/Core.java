@@ -17,7 +17,7 @@ import javax.security.auth.login.LoginException;
 
 public class Core extends ListenerAdapter {
     public static void main(String[] args) {
-        final String cat = "NTk5OTY5ODk1MDM1MTc0OTIz.XTQo4w.IL5dQIbakIrEF0zWH3t1UDf2YHQ";
+        final String cat = "";
         try {
             CommandClientBuilder natsuho = new CommandClientBuilder()
                     .setOwnerId("381773847357161482")
