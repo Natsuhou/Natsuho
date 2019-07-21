@@ -1,4 +1,4 @@
-package me.Shogatsu.commands.Music;
+package me.Shogatsu.Music;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;

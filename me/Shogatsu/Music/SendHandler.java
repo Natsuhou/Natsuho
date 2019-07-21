@@ -1,4 +1,4 @@
-package me.Shogatsu.commands.Music;
+package me.Shogatsu.Music;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.track.playback.AudioFrame;

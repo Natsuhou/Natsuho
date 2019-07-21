@@ -1,4 +1,4 @@
-package me.Shogatsu.commands;
+package me.Shogatsu.Commands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -8,6 +8,7 @@ import net.dv8tion.jda.core.entities.Role;
 
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class ServerInfo extends Command {
     private String members;
@@ -21,6 +22,7 @@ public class ServerInfo extends Command {
     }
     @Override
     protected void execute(CommandEvent e) {
+        while (e.getAuthor().isBot() || e.getAuthor().isFake())
         //Remove message to reduce clutter
         e.getMessage().delete().queue();
 
@@ -35,7 +37,7 @@ public class ServerInfo extends Command {
         e.reply(sinfo.build());
         e.getGuild().getMembers();
     }
-    public String getMembers(java.util.List membersList) {
+    public String getMembers(List membersList) {
         members = "";
         if (!membersList.isEmpty()) {
             tempMembers = (Member) membersList.get(0);

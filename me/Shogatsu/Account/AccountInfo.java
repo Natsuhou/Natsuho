@@ -1,4 +1,4 @@
-package me.Shogatsu.commands.Account;
+package me.Shogatsu.Account;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -19,7 +19,7 @@ public class AccountInfo extends Command {
 
     @Override
     protected void execute(CommandEvent e) {
-        NatsuhoMongo mongo = new NatsuhoMongo(e);
+        NatsuhoMongo mongo = new NatsuhoMongo();
 
         EmbedBuilder profile = new EmbedBuilder()
                 .setTitle(e.getAuthor().getName() + "'s profile", e.getAuthor().getAvatarUrl());

@@ -1,4 +1,4 @@
-package me.Shogatsu.commands;
+package me.Shogatsu.Commands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -58,7 +58,7 @@ public class WhoIs extends Command {
             }
         }
     }
-    public String getRoles(List rolesList) {
+    private String getRoles(List rolesList) {
         roles = "";
         if (!rolesList.isEmpty()) {
             tempRoles = (Role) rolesList.get(0);

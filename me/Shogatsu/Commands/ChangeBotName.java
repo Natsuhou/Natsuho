@@ -1,4 +1,4 @@
-package me.Shogatsu.commands;
+package me.Shogatsu.Commands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -13,9 +13,6 @@ public class ChangeBotName extends Command {
     }
     @Override
     protected void execute(CommandEvent e) {
-        //Remove message to reduce clutter
-        e.getMessage().delete().queue();
-
         Guild guild = e.getGuild();
 
         if (guild != null && !e.getAuthor().isBot()) {

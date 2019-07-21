@@ -1,4 +1,4 @@
-package me.Shogatsu.commands;
+package me.Shogatsu.Commands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -10,7 +10,7 @@ import java.awt.*;
 public class Shutdown extends Command {
     public Shutdown() {
         this.name = "shutdown";
-        this.help = "Shuts down the bot";
+        this.help = "Command used to make sure bot doesn't destroy everything";
         this.aliases = new String[]{"botgone"};
         this.userPermissions = new Permission[]{Permission.ADMINISTRATOR};
     }

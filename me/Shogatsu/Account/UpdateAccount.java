@@ -1,4 +1,4 @@
-package me.Shogatsu.commands.Account;
+package me.Shogatsu.Account;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -17,10 +17,7 @@ public class UpdateAccount extends Command {
 
     @Override
     protected void execute(CommandEvent e) {
-        //Remove message to reduce clutter
-        e.getMessage().delete().queue();
-
-        NatsuhoMongo update = new NatsuhoMongo(e);
-        update.addCurrency(15);
+        NatsuhoMongo update = new NatsuhoMongo();
+        update.addCurrency(15, e);
     }
 }
