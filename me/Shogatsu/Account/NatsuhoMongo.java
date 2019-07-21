@@ -22,7 +22,7 @@ public class NatsuhoMongo {
 
     public NatsuhoMongo() {
         try {
-            final String uri = ("mongodb+srv://Shogatsu:Thewonderwaffledg2natsuho@core-imu2f.mongodb.net/test?retryWrites=true&w=majority");
+            final String uri = ("");
             MongoClientURI cUri = new MongoClientURI(uri);
 
             this.mc = new MongoClient(cUri);
