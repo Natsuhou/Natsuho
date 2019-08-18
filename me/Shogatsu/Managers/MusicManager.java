@@ -9,9 +9,7 @@ import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import me.Shogatsu.Music.GuildMusicManager;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.VoiceChannel;
+import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.managers.AudioManager;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,13 +19,14 @@ import java.util.Map;
 public class MusicManager {
     private final AudioPlayerManager playerManager;
     private final Map<Long, GuildMusicManager> musicManagers;
-    public VoiceChannel userChannel;
+    private VoiceChannel userChannel;
+    private boolean inVoiceChannel;
 
     public MusicManager(CommandEvent e) {
         this.playerManager = new DefaultAudioPlayerManager();
         this.musicManagers = new HashMap<>();
         this.userChannel = e.getMember().getVoiceState().getChannel();
-
+        this.inVoiceChannel = e.getMember().getVoiceState().inVoiceChannel();
         AudioSourceManagers.registerRemoteSources(playerManager);
         AudioSourceManagers.registerLocalSource(playerManager);
     }
@@ -74,7 +73,7 @@ public class MusicManager {
             }
         });
     }
-    public void play(@NotNull Guild guild, @NotNull GuildMusicManager musicManager, AudioTrack track) {
+    private void play(@NotNull Guild guild, @NotNull GuildMusicManager musicManager, AudioTrack track) {
         connectToVoiceChannel(guild.getAudioManager());
         musicManager.scheduler.queue(track);
     }
@@ -85,7 +84,7 @@ public class MusicManager {
         channel.sendMessage("Skipped to next track.").queue();
     }
     private void connectToVoiceChannel(@NotNull AudioManager audioManager) {
-        if (!audioManager.isConnected() && !audioManager.isAttemptingToConnect()) {
+        if (!audioManager.isConnected() && !audioManager.isAttemptingToConnect() && inVoiceChannel) {
             audioManager.openAudioConnection(userChannel);
         }
     }

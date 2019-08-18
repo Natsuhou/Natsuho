@@ -10,6 +10,7 @@ import me.Shogatsu.Menu.ErrorMenu;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import org.bson.Document;
+import org.jetbrains.annotations.NotNull;
 
 public class AccountManager {
     private MongoCollection<Document> col;
@@ -33,7 +34,7 @@ public class AccountManager {
                 .append("description", "Change me with 'cd [arguements]!");
         col.insertOne(doc);
     }
-    public boolean hasAccount(User user) {
+    public boolean hasAccount(@NotNull User user) {
         BasicDBObject query = new BasicDBObject("discordId", user.getId());
         doc = col.find(query).first();
         return doc != null;
@@ -57,7 +58,7 @@ public class AccountManager {
     }
     public void minusCurrency(User user, int cost, MessageChannel channel) {
         manageUser(user, channel);
-        ErrorMenu error = new ErrorMenu(user, channel);
+        ErrorMenu error = new ErrorMenu(user);
 
         if (getCurrency(user, channel) >= Math.abs(cost)) {
             BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());

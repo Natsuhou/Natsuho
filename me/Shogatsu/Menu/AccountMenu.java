@@ -1,12 +1,17 @@
 package me.Shogatsu.Menu;
 
-import com.jagrosh.jdautilities.command.CommandEvent;
 import me.Shogatsu.Managers.AccountManager;
 import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.entities.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class AccountMenu {
     private AccountManager manager;
@@ -18,6 +23,34 @@ public class AccountMenu {
         builder = new EmbedBuilder();
         this.user = user;
         this.channel = messageChannel;
+    }
+    public EmbedBuilder whoIsMenu(@NotNull Message msg) {
+        String roles, iconUrl;
+        Role tempRoles;
+        Member tempMembers;
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Member member = msg.getMentionedMembers().get(0);
+        List rolesList = member.getRoles();
+        iconUrl = "https://cdn1.iconfinder.com/data/icons/MetroStation-PNG/252/MB__search.png";
+        if (!rolesList.isEmpty()) {
+            tempRoles = (Role) rolesList.get(0);
+            roles = tempRoles.getName();
+            for (int i = 1; i < rolesList.size(); i++) {
+                tempRoles = (Role) rolesList.get(i);
+                roles += ", " + tempRoles.getName();
+            }
+        } else {
+            roles = "No Roles";
+        }
+        return builder
+                .setColor(Color.yellow)
+                .setThumbnail(member.getUser().getAvatarUrl())
+                .setAuthor("Member information on " + member.getEffectiveName(), member.getUser().getAvatarUrl(), iconUrl)
+                .addField("Join Date: ", member.getJoinDate().format(dtf), true)
+                .addField("Status: ", member.getOnlineStatus().toString(), true)
+                .addField("Effective ID: ", member.getUser().getId(), true)
+                .addField("Roles: ", roles, true);
     }
     public EmbedBuilder createAccountMenu() {
         return builder
@@ -37,8 +70,5 @@ public class AccountMenu {
                 .addField(":peanuts:  " + currency, "", true)
                 .addField(":coffee:  " + "amount", "",true)
                 .setFooter("ID: " + user.getAsTag(), null);
-    }
-    public EmbedBuilder shopMenu(CommandEvent e) {
-        return builder;
     }
 }

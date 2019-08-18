@@ -1,25 +1,27 @@
-package me.Shogatsu.Commands.Account;
+package me.Shogatsu.Commands.Game;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import me.Shogatsu.Managers.AccountManager;
-import me.Shogatsu.Menu.AccountMenu;
 import me.Shogatsu.Menu.ErrorMenu;
 import me.Shogatsu.Menu.UpdateMenu;
-import net.dv8tion.jda.core.EmbedBuilder;
+import org.jetbrains.annotations.NotNull;
 
-import java.awt.*;
-
-public class UpdateDescription extends Command {
-    public UpdateDescription() {
+@CommandInfo(
+        name = "Change description",
+        description = "Change your profile description"
+)
+public class UpdateProfileDescription extends Command {
+    public UpdateProfileDescription() {
         this.name = "cd";
         this.cooldown = 5;
         this.cooldownScope = CooldownScope.USER;
         this.help = "Used to change your profile description!";
     }
     @Override
-    protected void execute(CommandEvent e) {
-        ErrorMenu error = new ErrorMenu(e.getAuthor(), e.getChannel());
+    protected void execute(@NotNull CommandEvent e) {
+        ErrorMenu error = new ErrorMenu(e.getAuthor());
 
         if (e.getArgs().isEmpty()) {
             e.reply(error.noArgs("Please specify a description!").build());

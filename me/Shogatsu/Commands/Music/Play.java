@@ -12,6 +12,6 @@ public class Play extends Command {
     @Override
     protected void execute(CommandEvent e) {
         MusicManager music = new MusicManager(e);
-
+        music.loadAndPlay(e.getTextChannel(), e.getArgs());
     }
 }

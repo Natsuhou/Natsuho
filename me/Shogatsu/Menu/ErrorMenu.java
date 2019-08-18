@@ -4,17 +4,17 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
+import org.jetbrains.annotations.Contract;
 
 import java.awt.*;
 
 public class ErrorMenu {
     private EmbedBuilder builder;
-    private MessageChannel channel;
     private User user;
-    public ErrorMenu(User user, MessageChannel channel) {
+    @Contract(pure = true)
+    public ErrorMenu(User user) {
         this.builder = new EmbedBuilder();
         this.user = user;
-        this.channel = channel;
     }
     public EmbedBuilder invalidAccount() {
         return builder
@@ -43,5 +43,12 @@ public class ErrorMenu {
                 .setAuthor(user.getName(), null, user.getAvatarUrl())
                 .setTitle(":x: User Does Not Exist!")
                 .setDescription(user.getName() + " does not have an account!");
+    }
+    public EmbedBuilder indexOutBounds(String args) {
+        return builder
+                .setColor(Color.red)
+                .setAuthor(user.getName(), null, user.getAvatarUrl())
+                .setTitle(":x: Index Out of Bounds!")
+                .setDescription(args);
     }
 }

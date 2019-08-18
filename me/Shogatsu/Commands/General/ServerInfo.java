@@ -2,26 +2,28 @@ package me.Shogatsu.Commands.General;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Role;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class ServerInfo extends Command {
-    private String members;
-    private Member tempMembers;
+@CommandInfo(
+        name = "Server info",
+        description = "Displays guild's owner, region and members"
+)
 
+public class ServerInfo extends Command {
     public ServerInfo() {
         this.name = "sinfo";
-        this.aliases = new String[]{"sInfo", "serverInfo"};
+        this.aliases = new String[] {"sInfo", "serverInfo"};
         this.help = "Returns information about the server";
         this.cooldown = 5;
     }
     @Override
-    protected void execute(CommandEvent e) {
+    protected void execute(@NotNull CommandEvent e) {
         EmbedBuilder sinfo = new EmbedBuilder()
                 .setColor(Color.yellow)
                 .setThumbnail(e.getGuild().getIconUrl())
@@ -30,9 +32,11 @@ public class ServerInfo extends Command {
                 .addField("Region: ", e.getGuild().getRegion().toString(), true)
                 .addField("Members: ", getMembers(e.getGuild().getMembers()), true);
         e.reply(sinfo.build());
-        e.getGuild().getMembers();
     }
-    private String getMembers(List membersList) {
+    private String getMembers(@NotNull List membersList) {
+        String members;
+        Member tempMembers;
+
         members = "";
         if (!membersList.isEmpty()) {
             tempMembers = (Member) membersList.get(0);
