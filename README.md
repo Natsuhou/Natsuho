@@ -1,18 +1,8 @@
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FShogatsu%2FNatsuho.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2FShogatsu%2FNatsuho?ref=badge_small)
 # Natsuho
-Simple discord bot that offers features such as: server info, player info, fun games, and other random stuff. 
+Budget multi-purpose discord bot but hey, it somewhat works. Uses JDA 3 (too lazy to update to v4), JDA-Utilities, MongoDBDriver.
 
-## Main Resources 
-+ Uses JDA 3.8.3
-+ Uses JDA-Utilities 2.1.5
-+ Uses MongoDB driver 3.10.2
-
-## Features in Progress
-+ Update to JDA 4?
-+ Item shop
-+ Profile customization 
-+ Server hosting
-
-## Contributors 
-+ Only me :(
+## Contributors
++ @Shogatsu
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FShogatsu%2FNatsuho.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FShogatsu%2FNatsuho?ref=badge_large)
