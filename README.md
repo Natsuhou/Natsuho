@@ -1,4 +1,6 @@
 # Natsuho
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FShogatsu%2FNatsuho.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FShogatsu%2FNatsuho?ref=badge_shield)
+
 Simple discord bot that offers features such as: server info, player info, fun games, and other random stuff. 
 
 ## Main Resources 
@@ -15,3 +17,7 @@ Simple discord bot that offers features such as: server info, player info, fun g
 ## Contributors 
 + Only me :(
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FShogatsu%2FNatsuho.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FShogatsu%2FNatsuho?ref=badge_large)
