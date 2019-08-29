@@ -15,3 +15,4 @@ Simple discord bot that offers features such as: server info, player info, fun g
 ## Contributors 
 + Only me :(
 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FShogatsu%2FNatsuho.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FShogatsu%2FNatsuho?ref=badge_large)
