@@ -6,7 +6,7 @@ Budget multi-purpose discord bot but hey, it somewhat works. Uses JDA 3 (too laz
 ## Contributors
 + @Shogatsu
 
-##Upcoming features
+## Upcoming features
 + Support for in-game statistics (KDR, Damage, etc)
 
 ## FOSSA
