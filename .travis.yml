@@ -1,1 +1,20 @@
 language: java
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "CAcbyQGJFqleGjDYMYBPzbNNqSQ29uWg5N7PyN3H+wU65fiCYKkfKHfY/xwGWQ/3Sd13CPoSG3gE+MYKzPIcRfdrtpiI8JBB8V9Dt/9x0dkRC8cdL+CAU5BRoMQOrQwe5U2b9WZrg27kn2ojbddvZ6AC+YwHLSNI7J3so751EW6hohKBoNv7Pm7hCKvR4SQ/wJjUBbF91rpXKhuyyiSqfE0tMNbu9KENNo9jQMgNpF2bQJffbP4SM42xcj/WpjAgNA2+esm5zEGwusWDty0vktXMfJcjwBLR07T/YTqwF4J8LP43+6N2FB070uXYzUqYIIYvKnZJ4D5lIFTxx8q9QqAbxLBxxNd17osSC0km2V7kmDXed0wXL1JQA/qlfOxQFnsHJMuWbwloNDVtoCqvRLkvHAtKw2V6Osc4r1CzjN0IPq/rLWOU10qRpK583SwvMIILUrN7C2kyl5OC3AR5l20Q/Al4ZFUA62tv92/DOTrJkuxmU7tPt/cjXGQMSoTMsGX5DhKINgiDDP0zhjcZtwR9MJ8ZVw7TN+aVoZ2DZoKMYOa6JTqRg8V5QFtTS9TuDHb48XuCuU35ZdtrxwVNcYAOH30PF4NxWCKHSFzYkdkW1rVzykgBVUlZ9q1/uLAGzDeRfIMyf8BDn+THhb0nszOTjqY5d+2paLz8oV6cCCU="
+
+before_install:
+  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "Shogatsu/Natsuho"
+      description: "<Your project description here>"
+    notification_email: takaram1776@gmail.com
+    build_command_prepend: "<Your build preprocessing command here>"
+    build_command: "<Your build command here>"
+    branch_pattern: coverity_scan
