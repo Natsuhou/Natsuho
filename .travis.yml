@@ -17,4 +17,4 @@ addons:
     build_command_prepend: "./configure"
     notification_email: thesuperwaffle12@gmail.com
     build_command: "make"
-    branch_pattern: coverity_scan
+    branch_pattern: master
