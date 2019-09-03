@@ -4,8 +4,8 @@ import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 
-import me.Shogatsu.Menu.AccountMenu;
 import me.Shogatsu.Menu.ErrorMenu;
+import me.Shogatsu.Menu.GeneralMenu;
 
 @CommandInfo(
         name = "Whois",
@@ -22,11 +22,11 @@ public class WhoIs extends Command {
     protected void execute(CommandEvent e) {
         if (e.getArgs().isEmpty()) {
             ErrorMenu error = new ErrorMenu(e.getAuthor());
-            e.reply(error.noArgs("Please provide a name! Type 'whois @UserName").build());
+            e.reply(error.noArgs("Please provide a name!").build());
         } else {
             try {
-                AccountMenu account = new AccountMenu(e.getAuthor(), e.getChannel());
-                e.reply(account.whoIsMenu(e.getMessage()).build());
+                GeneralMenu general = new GeneralMenu(e.getAuthor());
+                e.reply(general.whoIsMenu(e.getMessage()).build());
             } catch (IndexOutOfBoundsException exception) {
                 ErrorMenu error = new ErrorMenu(e.getAuthor());
                 e.reply(error.indexOutBounds("Please reformat command as: 'whois @Username").build());

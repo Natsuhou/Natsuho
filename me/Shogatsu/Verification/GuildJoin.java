@@ -3,7 +3,6 @@ package me.Shogatsu.Verification;
 import me.Shogatsu.Managers.AuthManager;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
-import net.dv8tion.jda.core.events.message.priv.react.PrivateMessageReactionAddEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class GuildJoin extends ListenerAdapter {
@@ -14,6 +13,8 @@ public class GuildJoin extends ListenerAdapter {
         this.guild = e.getGuild();
         AuthManager manager = new AuthManager(e.getUser());
         manager.messageAuth();
+        e.getJDA().addEventListener(new Authentication());
+
     }
     public Guild returnGuild() {
         return guild;

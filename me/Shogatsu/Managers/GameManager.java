@@ -1,30 +1,29 @@
 package me.Shogatsu.Managers;
 
-import com.jagrosh.jdautilities.command.CommandEvent;
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Projections;
-import me.Shogatsu.Menu.AccountMenu;
+import me.Shogatsu.Menu.GameMenu;
 import me.Shogatsu.Menu.ErrorMenu;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import org.bson.Document;
 import org.jetbrains.annotations.NotNull;
 
-public class AccountManager {
+public class GameManager {
     private MongoCollection<Document> col;
     private Document doc;
 
-    public AccountManager() {
+    public GameManager() {
         try {
             final String uri = ("");
             final MongoClientURI cUri = new MongoClientURI(uri);
-            MongoClient mc = new MongoClient(cUri);
-            MongoDatabase db = mc.getDatabase("Core");
+            final MongoClient mc = new MongoClient(cUri);
+            final MongoDatabase db = mc.getDatabase("Core");
             this.col = db.getCollection("UserInfo");
         } catch (MongoClientException exception) {
-            exception.getCause().printStackTrace();
+            exception.printStackTrace();
         }
     }
     private void createAccount(String discordId) {
@@ -39,15 +38,12 @@ public class AccountManager {
         doc = col.find(query).first();
         return doc != null;
     }
+    //Most methods in class are dependent on this method
     public void manageUser(User user, MessageChannel channel) {
         while(!hasAccount(user)) {
-            try {
-                AccountMenu account = new AccountMenu(user, channel);
-                channel.sendMessage(account.createAccountMenu().build()).queue();
-                createAccount(user.getId());
-            } catch (MongoException exception) {
-                exception.getCause().printStackTrace();
-            }
+            GameMenu account = new GameMenu(user, channel);
+            channel.sendMessage(account.createAccountMenu().build()).queue();
+            createAccount(user.getId());
         }
     }
     public void addCurrency(User user, int amount, MessageChannel channel) {
@@ -65,7 +61,7 @@ public class AccountManager {
             BasicDBObject updateQuery = new BasicDBObject("$inc", new BasicDBObject("currency", cost));
             col.updateOne(searchQuery, updateQuery);
         } else {
-            channel.sendMessage(error.notEnoughCurrency().build()).queue();
+            channel.sendMessage(error.notEnoughCurrency("eggs").build()).queue();
         }
     }
     public int getCurrency(User user, MessageChannel channel) {
@@ -85,7 +81,9 @@ public class AccountManager {
         doc = col.find(searchQuery).projection(
                 Projections.fields(
                         Projections.include("description"),
-                        Projections.excludeId())).first();
+                        Projections.excludeId()
+                )
+        ).first();
         assert doc != null;
         return doc.getString("description");
     }
@@ -94,5 +92,51 @@ public class AccountManager {
         BasicDBObject updateQuery = new BasicDBObject("$set", new BasicDBObject("description", newDescription));
         BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
         col.updateOne(searchQuery, updateQuery);
+    }
+    public void buyShopItem(User user, MessageChannel channel, String itemId, String itemName) {
+        manageUser(user, channel);
+        BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
+        doc = col.find(searchQuery).first();
+        assert doc != null;
+        doc.append(itemId, itemName);
+    }
+    public void upgradeShopItem(User user, MessageChannel channel, String itemId, String itemName) {
+        manageUser(user, channel);
+        BasicDBObject updateQuery = new BasicDBObject("$set", new BasicDBObject(itemId, itemName));
+        BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
+        col.updateOne(searchQuery, updateQuery);
+    }
+    public boolean hasShopItem(User user, MessageChannel channel, String itemId, String itemName) {
+        manageUser(user, channel);
+        BasicDBObject searchQueryUUID = new BasicDBObject("discordId", user.getId());
+        doc = col.find(searchQueryUUID).projection(
+                Projections.fields(
+                        Projections.include(itemId, itemName),
+                        Projections.excludeId()
+                )
+        ).first();
+        return doc != null;
+    }
+    public int getFarmValue(User user, MessageChannel channel) {
+        manageUser(user, channel);
+        BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
+        doc = col.find(searchQuery).projection(
+                Projections.fields(
+                        Projections.include("farmValue"),
+                        Projections.excludeId()))
+                .first();
+        assert doc != null;
+        return doc.getInteger("farmValue");
+    }
+    public int getTokens(User user, MessageChannel channel) {
+        manageUser(user, channel);
+        BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
+        doc = col.find(searchQuery).projection(
+                Projections.fields(
+                        Projections.include("tokens"),
+                        Projections.excludeId()))
+                .first();
+        assert doc != null;
+        return doc.getInteger("tokens");
     }
 }

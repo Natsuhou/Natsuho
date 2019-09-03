@@ -1,10 +1,49 @@
 package me.Shogatsu.Menu;
 
-import org.jetbrains.annotations.Contract;
+import me.Shogatsu.Managers.GeneralManager;
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.User;
+import org.jetbrains.annotations.NotNull;
+import java.awt.*;
+import java.time.format.DateTimeFormatter;
 
 public class GeneralMenu {
-    @Contract(pure = true)
-    public GeneralMenu() {
-
+    private EmbedBuilder builder;
+    private User user;
+    public GeneralMenu(User u) {
+        //Color Theme: Orange
+        this.builder = new EmbedBuilder().setColor(Color.orange);
+        this.user = u;
+    }
+    public EmbedBuilder whoIsMenu(@NotNull Message msg) {
+        String iconUrl = "https://cdn1.iconfinder.com/data/icons/MetroStation-PNG/252/MB__search.png";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Member member = msg.getMentionedMembers().get(0);
+        GeneralManager general = new GeneralManager();
+        return builder
+                .setThumbnail(member.getUser().getAvatarUrl())
+                .setAuthor("Member information on " + member.getEffectiveName(), member.getUser().getAvatarUrl(), iconUrl)
+                .addField("Join Date: ", member.getJoinDate().format(dtf), true)
+                .addField("Status: ", member.getOnlineStatus().toString(), true)
+                .addField("Effective ID: ", member.getUser().getId(), true)
+                .addField("Roles: ", general.getMentionedRole(msg), true);
+    }
+    public EmbedBuilder versionMenu(String version) {
+        return builder
+                .setAuthor(user.getName(), user.getAvatarUrl())
+                .setTitle("Version Info")
+                .setDescription("Currently running on build " + version);
+    }
+    public EmbedBuilder serverInfoMenu(Guild guild) {
+        GeneralManager manager = new GeneralManager();
+        return builder
+                .setColor(Color.yellow)
+                .setAuthor(guild.getName(), guild.getIconUrl())
+                .addField("Owner: ", guild.getOwner().getEffectiveName(), true)
+                .addField("Region: ", guild.getRegionRaw(), true)
+                .addField("Members: ", manager.getGuildMembers(guild.getMembers()), true);
     }
 }

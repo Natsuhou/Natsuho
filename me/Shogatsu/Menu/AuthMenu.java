@@ -12,11 +12,10 @@ public class AuthMenu {
     private EmbedBuilder builder;
     private User user;
     @Contract(pure = true)
-    public AuthMenu(User user) {
+    public AuthMenu(User u) {
         this.builder = new EmbedBuilder();
-        this.user = user;
+        this.user = u;
     }
-    //This should be set to change
     public EmbedBuilder startupMessage(@NotNull Guild guild) {
         return builder
                 .setColor(Color.yellow)
@@ -34,14 +33,14 @@ public class AuthMenu {
     }
     public EmbedBuilder verificationSuccess(@NotNull Guild guild) {
         return builder
-            .setTitle(":shield: Verify ")
+            .setTitle(":shield: Verification")
             .setThumbnail(user.getAvatarUrl())
             .setColor(Color.green)
             .setDescription("Account has been verified! You now have default access to " + guild.getName());
     }
     public EmbedBuilder authTimeout() {
         return builder
-                .setTitle(":shield: Verify")
+                .setTitle(":shield: Verification")
                 .setThumbnail(user.getAvatarUrl())
                 .setColor(Color.red)
                 .setDescription("Account verification has failed! Please re-authenticate or ask for help!");
