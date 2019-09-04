@@ -20,10 +20,9 @@ public class ChangeProfileDescription extends Command {
     }
     @Override
     protected void execute(@NotNull CommandEvent e) {
-        ErrorMenu error = new ErrorMenu(e.getAuthor());
-
+        ErrorMenu errorMenu = new ErrorMenu(e.getAuthor());
         if (e.getArgs().isEmpty()) {
-            e.reply(error.noArgs("Please specify a description!").build());
+            e.reply(errorMenu.invalidArgs("Please specify a description!").build());
         } else if (!e.getAuthor().isBot() && !e.getAuthor().isFake()) {
             GameManager manager = new GameManager();
             GameMenu menu = new GameMenu(e.getAuthor(), e.getChannel());
@@ -31,7 +30,7 @@ public class ChangeProfileDescription extends Command {
             manager.setDescription(e.getAuthor(), e.getArgs(), e.getChannel());
             e.reply(menu.setDescriptionMenu().build());
         } else {
-            e.reply(error.invalidAccount().build());
+            e.reply(errorMenu.invalidAccount().build());
         }
     }
 }

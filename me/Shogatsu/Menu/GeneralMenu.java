@@ -1,11 +1,11 @@
 package me.Shogatsu.Menu;
 
 import me.Shogatsu.Managers.GeneralManager;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.User;
 import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
@@ -26,7 +26,7 @@ public class GeneralMenu {
         return builder
                 .setThumbnail(member.getUser().getAvatarUrl())
                 .setAuthor("Member information on " + member.getEffectiveName(), member.getUser().getAvatarUrl(), iconUrl)
-                .addField("Join Date: ", member.getJoinDate().format(dtf), true)
+                .addField("Join Date: ", member.getTimeJoined().format(dtf), true)
                 .addField("Status: ", member.getOnlineStatus().toString(), true)
                 .addField("Effective ID: ", member.getUser().getId(), true)
                 .addField("Roles: ", general.getMentionedRole(msg), true);

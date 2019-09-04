@@ -22,14 +22,14 @@ public class WhoIs extends Command {
     protected void execute(CommandEvent e) {
         if (e.getArgs().isEmpty()) {
             ErrorMenu error = new ErrorMenu(e.getAuthor());
-            e.reply(error.noArgs("Please provide a name!").build());
+            e.reply(error.invalidArgs("Please provide a name!").build());
         } else {
             try {
                 GeneralMenu general = new GeneralMenu(e.getAuthor());
                 e.reply(general.whoIsMenu(e.getMessage()).build());
             } catch (IndexOutOfBoundsException exception) {
                 ErrorMenu error = new ErrorMenu(e.getAuthor());
-                e.reply(error.indexOutBounds("Please reformat command as: 'whois @Username").build());
+                e.reply(error.invalidArgs("Please reformat command as: 'whois @Username").build());
             }
         }
     }

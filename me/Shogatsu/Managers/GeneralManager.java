@@ -1,14 +1,9 @@
 package me.Shogatsu.Managers;
 
-import me.Shogatsu.Menu.ErrorMenu;
-import me.Shogatsu.Menu.GameMenu;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.Role;
 import org.jetbrains.annotations.NotNull;
-
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class GeneralManager {

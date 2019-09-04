@@ -3,6 +3,7 @@ package me.Shogatsu.Commands.General;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import me.Shogatsu.Menu.ErrorMenu;
 import me.Shogatsu.Menu.GeneralMenu;
 
 @CommandInfo(
@@ -17,7 +18,12 @@ public class Version extends Command {
     }
     @Override
     protected void execute(CommandEvent e) {
-        GeneralMenu general = new GeneralMenu(e.getAuthor());
-        e.reply(general.versionMenu("0.9.1-BETA").build());
+        if (!e.getAuthor().isFake() && !e.getAuthor().isBot()) {
+            GeneralMenu general = new GeneralMenu(e.getAuthor());
+            e.reply(general.versionMenu("0.9.1-BETA").build());
+        } else {
+            ErrorMenu error = new ErrorMenu(e.getAuthor());
+            e.reply(error.invalidAccount().build());
+        }
     }
 }

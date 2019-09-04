@@ -1,10 +1,11 @@
 package me.Shogatsu.Menu;
 
 import me.Shogatsu.Managers.GameManager;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.User;
+
 import java.awt.*;
-import java.util.Scanner;
 
 
 public class GameMenu {

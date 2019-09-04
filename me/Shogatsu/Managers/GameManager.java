@@ -6,8 +6,8 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Projections;
 import me.Shogatsu.Menu.GameMenu;
 import me.Shogatsu.Menu.ErrorMenu;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.User;
 import org.bson.Document;
 import org.jetbrains.annotations.NotNull;
 

@@ -1,9 +1,9 @@
 package me.Shogatsu.Menu;
 
 import me.Shogatsu.Managers.GameManager;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.User;
 
 import java.awt.*;
 

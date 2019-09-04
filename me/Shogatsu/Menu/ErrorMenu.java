@@ -1,7 +1,7 @@
 package me.Shogatsu.Menu;
 
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.User;
 import org.jetbrains.annotations.Contract;
 import java.awt.*;
 
@@ -22,7 +22,7 @@ public class ErrorMenu {
                 .setTitle(":x: Invalid Account!")
                 .setDescription("Account is either a fake account or is a bot");
     }
-    public EmbedBuilder noArgs(String args) {
+    public EmbedBuilder invalidArgs(String args) {
         return builder
                 .setTitle(":x: Invalid Arguments!")
                 .setDescription(args);
@@ -36,11 +36,6 @@ public class ErrorMenu {
         return builder
                 .setTitle(":x: Account Error")
                 .setDescription(user.getName() + " does not have an account!");
-    }
-    public EmbedBuilder indexOutBounds(String args) {
-        return builder
-                .setTitle(":x: Index Out of Bounds!")
-                .setDescription(args);
     }
     public EmbedBuilder hasAccount() {
         return builder
