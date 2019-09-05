@@ -2,6 +2,7 @@ package me.Shogatsu.LeagueOfLegends;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import net.rithms.riot.api.RiotApi;
 
 
 public class LeagueDemo extends Command {
@@ -11,5 +12,7 @@ public class LeagueDemo extends Command {
     }
     @Override
     protected void execute(CommandEvent e) {
+        RiotApi apikey = new RiotApi();
+
     }
 }

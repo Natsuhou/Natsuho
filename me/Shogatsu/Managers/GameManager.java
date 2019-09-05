@@ -17,7 +17,7 @@ public class GameManager {
 
     public GameManager() {
         try {
-            final String uri = ("");
+            final String uri = ();
             final MongoClientURI cUri = new MongoClientURI(uri);
             final MongoClient mc = new MongoClient(cUri);
             final MongoDatabase db = mc.getDatabase("Core");

@@ -17,7 +17,7 @@ import javax.security.auth.login.LoginException;
 
 public class Core extends ListenerAdapter {
     public static void main(String[] args) {
-        final String cat = "";
+        final String wow = "";
         EventWaiter waiter = new EventWaiter();
         try {
             CommandClientBuilder builder = new CommandClientBuilder()
@@ -39,7 +39,7 @@ public class Core extends ListenerAdapter {
                             new DisplayFarm()
                     );
             new JDABuilder(AccountType.BOT)
-                    .setToken(cat)
+                    .setToken(wow)
                     .setStatus(OnlineStatus.ONLINE)
                     .addEventListeners(builder.build(), waiter)
                     .build();
