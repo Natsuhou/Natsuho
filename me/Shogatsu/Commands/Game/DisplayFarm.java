@@ -13,7 +13,7 @@ public class DisplayFarm extends Command {
     protected void execute(CommandEvent e) {
         if (!e.getAuthor().isBot() && !e.getAuthor().isFake()) {
             GameMenu game = new GameMenu(e.getAuthor(), e.getChannel());
-            e.reply(game.farmMenu().build());
+            e.reply(game.farm().build());
         } else {
 
         }

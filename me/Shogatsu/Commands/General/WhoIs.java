@@ -14,7 +14,6 @@ import me.Shogatsu.Menu.GeneralMenu;
 public class WhoIs extends Command {
     public WhoIs() {
         this.name = "whois";
-        this.help = "Displays user information";
         this.aliases = new String[] {"userinfo", "who"};
         this.cooldown = 5;
     }
@@ -26,7 +25,7 @@ public class WhoIs extends Command {
         } else {
             try {
                 GeneralMenu general = new GeneralMenu(e.getAuthor());
-                e.reply(general.whoIsMenu(e.getMessage()).build());
+                e.reply(general.whoIs(e.getMessage()).build());
             } catch (IndexOutOfBoundsException exception) {
                 ErrorMenu error = new ErrorMenu(e.getAuthor());
                 e.reply(error.invalidArgs("Please reformat command as: 'whois @Username").build());

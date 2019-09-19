@@ -1,4 +1,4 @@
-package me.Shogatsu.Commands.Game;
+package me.Shogatsu.Commands.General.Memes;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -6,13 +6,13 @@ import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import me.Shogatsu.Menu.ErrorMenu;
 
 @CommandInfo(
-        name = "Global leaderboard",
-        description = "Displays the top farms on all discord servers"
+        name = "Add Meme",
+        description = "Stores memes in a mongodb and is displayed via embed"
 )
-public class GlobalBoard extends Command {
-    public GlobalBoard() {
-        this.name = "glb";
-        this.cooldown = 20;
+public class AddMeme extends Command {
+    public AddMeme() {
+        this.name = "am";
+        this.cooldown = 25;
     }
     @Override
     protected void execute(CommandEvent e) {

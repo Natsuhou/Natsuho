@@ -20,7 +20,7 @@ public class GameMenu {
         this.channel = c;
     }
     //Used when user creates a new account
-    public EmbedBuilder createAccountMenu() {
+    public EmbedBuilder createAccount() {
         return builder
                 .setThumbnail("http://clipart-library.com/image_gallery2/Success-PNG-Image.png")
                 .setAuthor("Account has been created!", null, user.getAvatarUrl())
@@ -28,7 +28,7 @@ public class GameMenu {
                 .setFooter("Need some help? Do 'help for more info!", null);
     }
     //Displays user profile
-    public EmbedBuilder accountMenu() {
+    public EmbedBuilder account() {
         manager = new GameManager();
         String currency = Integer.toString(manager.getCurrency(user, channel));
         //String farmValue = Integer.toString(manager.getFarmValue(user, channel));
@@ -42,14 +42,14 @@ public class GameMenu {
                 .setFooter("Balance: $" + currency, "https://i.imgur.com/6HZJuZ5.png");
     }
     //Executed when user changes their profile description
-    public EmbedBuilder setDescriptionMenu() {
+    public EmbedBuilder setDescription() {
         return builder
                 .setAuthor(user.getName(), null, user.getAvatarUrl())
                 .setTitle(":bulb:Account Update")
                 .setDescription("User description has been updated");
     }
     //Executed when user gets obtains currency
-    public EmbedBuilder updateEggMenu(int amount) {
+    public EmbedBuilder updateEgg(int amount) {
         manager = new GameManager();
         String currency = Integer.toString(manager.getCurrency(user, channel));
         return builder
@@ -59,7 +59,7 @@ public class GameMenu {
                 .setFooter("Balance: $" + currency, "https://i.imgur.com/6HZJuZ5.png");
     }
     //Displays users current farm
-    public EmbedBuilder farmMenu() {
+    public EmbedBuilder farm() {
         manager = new GameManager();
         return builder
                 .setAuthor(user.getName(), null, user.getAvatarUrl())

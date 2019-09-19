@@ -18,7 +18,7 @@ public class GeneralMenu {
         this.builder = new EmbedBuilder().setColor(Color.orange);
         this.user = u;
     }
-    public EmbedBuilder whoIsMenu(@NotNull Message msg) {
+    public EmbedBuilder whoIs(@NotNull Message msg) {
         String iconUrl = "https://cdn1.iconfinder.com/data/icons/MetroStation-PNG/252/MB__search.png";
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Member member = msg.getMentionedMembers().get(0);
@@ -31,13 +31,13 @@ public class GeneralMenu {
                 .addField("Effective ID: ", member.getUser().getId(), true)
                 .addField("Roles: ", general.getMentionedRole(msg), true);
     }
-    public EmbedBuilder versionMenu(String version) {
+    public EmbedBuilder version(String version) {
         return builder
                 .setAuthor(user.getName(), user.getAvatarUrl())
                 .setTitle("Version Info")
                 .setDescription("Currently running on build " + version);
     }
-    public EmbedBuilder serverInfoMenu(Guild guild) {
+    public EmbedBuilder serverInfo(Guild guild) {
         GeneralManager manager = new GeneralManager();
         return builder
                 .setColor(Color.yellow)

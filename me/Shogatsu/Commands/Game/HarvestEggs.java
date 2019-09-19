@@ -15,8 +15,6 @@ import org.jetbrains.annotations.NotNull;
 public class HarvestEggs extends Command {
     public HarvestEggs() {
         this.name = "harvest";
-        this.help = "Harvest loot and stuff";
-        this.aliases = new String[] {"h"};
         this.cooldown = 50;
     }
     @Override
@@ -25,8 +23,8 @@ public class HarvestEggs extends Command {
             int amount = 10;
             GameManager manager = new GameManager();
             GameMenu menu = new GameMenu(e.getAuthor(), e.getChannel());
-            manager.addCurrency(e.getAuthor(), amount, e.getChannel());
-            e.reply(menu.updateEggMenu(amount).build());
+            manager.addCurrency(e.getAuthor(), amount);
+            e.reply(menu.updateEgg(amount).build());
         } else {
             ErrorMenu error = new ErrorMenu(e.getAuthor());
             e.reply(error.userDoesNotExist().build());

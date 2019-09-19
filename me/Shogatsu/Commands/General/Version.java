@@ -12,15 +12,15 @@ import me.Shogatsu.Menu.GeneralMenu;
 )
 public class Version extends Command {
     public Version() {
-        this.name = "version";
-        this.aliases = new String[] {"v", "ver"};
+        this.name = "ver";
+        this.aliases = new String[] {"version", "v"};
         this.cooldown = 20;
     }
     @Override
     protected void execute(CommandEvent e) {
         if (!e.getAuthor().isFake() && !e.getAuthor().isBot()) {
             GeneralMenu general = new GeneralMenu(e.getAuthor());
-            e.reply(general.versionMenu("0.9.1-BETA").build());
+            e.reply(general.version("1.0.5").build());
         } else {
             ErrorMenu error = new ErrorMenu(e.getAuthor());
             e.reply(error.invalidAccount().build());

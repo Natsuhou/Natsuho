@@ -28,7 +28,7 @@ public class ShopMenu {
                 .addField(":truck: Delivery", "+60 productivity", true)
                 .setFooter("Balance: $" + balance, "https://i.imgur.com/6HZJuZ5.png");
     }
-    public EmbedBuilder purchaseConfirmMenu(String purchaseName, int amount) {
+    public EmbedBuilder endPurchase(String purchaseName, int amount) {
         GameManager manager = new GameManager();
         String balance = Integer.toString(manager.getCurrency(user, channel));
         return builder
@@ -36,7 +36,7 @@ public class ShopMenu {
                 .setAuthor(user.getName(), user.getAvatarUrl())
                 .setFooter("Balance: $" + balance, "https://i.imgur.com/6HZJuZ5.png");
     }
-    public EmbedBuilder confirmPurchaseMenu() {
+    public EmbedBuilder confirmPurchase() {
         return builder
                 .setTitle(":egg: Egg Exchange")
                 .setDescription("Confirm your purchase by reacting with a checkmark")

@@ -17,7 +17,7 @@ public class GameManager {
 
     public GameManager() {
         try {
-            final String uri = ();
+            final String uri = ("");
             final MongoClientURI cUri = new MongoClientURI(uri);
             final MongoClient mc = new MongoClient(cUri);
             final MongoDatabase db = mc.getDatabase("Core");
@@ -38,34 +38,30 @@ public class GameManager {
         doc = col.find(query).first();
         return doc != null;
     }
-    //Most methods in class are dependent on this method
-    public void manageUser(User user, MessageChannel channel) {
+    public void manageUser(User user) {
         while(!hasAccount(user)) {
-            GameMenu account = new GameMenu(user, channel);
-            channel.sendMessage(account.createAccountMenu().build()).queue();
             createAccount(user.getId());
         }
     }
-    public void addCurrency(User user, int amount, MessageChannel channel) {
-        manageUser(user, channel);
+    public void addCurrency(User user, int amount) {
+        manageUser(user);
         BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
         BasicDBObject updateQuery = new BasicDBObject("$inc", new BasicDBObject("currency", amount));
         col.updateOne(searchQuery, updateQuery);
     }
     public void minusCurrency(User user, int cost, MessageChannel channel) {
-        manageUser(user, channel);
-        ErrorMenu error = new ErrorMenu(user);
-
+        manageUser(user);
         if (getCurrency(user, channel) >= Math.abs(cost)) {
             BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
             BasicDBObject updateQuery = new BasicDBObject("$inc", new BasicDBObject("currency", cost));
             col.updateOne(searchQuery, updateQuery);
         } else {
+            ErrorMenu error = new ErrorMenu(user);
             channel.sendMessage(error.notEnoughCurrency("eggs").build()).queue();
         }
     }
     public int getCurrency(User user, MessageChannel channel) {
-        manageUser(user, channel);
+        manageUser(user);
         BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
         doc = col.find(searchQuery).projection(
                 Projections.fields(
@@ -76,7 +72,7 @@ public class GameManager {
         return doc.getInteger("currency");
     }
     public String getDescription(User user, MessageChannel channel) {
-        manageUser(user, channel);
+        manageUser(user);
         BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
         doc = col.find(searchQuery).projection(
                 Projections.fields(
@@ -88,26 +84,26 @@ public class GameManager {
         return doc.getString("description");
     }
     public void setDescription(User user, String newDescription, MessageChannel channel) {
-        manageUser(user, channel);
+        manageUser(user);
         BasicDBObject updateQuery = new BasicDBObject("$set", new BasicDBObject("description", newDescription));
         BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
         col.updateOne(searchQuery, updateQuery);
     }
     public void buyShopItem(User user, MessageChannel channel, String itemId, String itemName) {
-        manageUser(user, channel);
+        manageUser(user);
         BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
         doc = col.find(searchQuery).first();
         assert doc != null;
         doc.append(itemId, itemName);
     }
     public void upgradeShopItem(User user, MessageChannel channel, String itemId, String itemName) {
-        manageUser(user, channel);
+        manageUser(user);
         BasicDBObject updateQuery = new BasicDBObject("$set", new BasicDBObject(itemId, itemName));
         BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
         col.updateOne(searchQuery, updateQuery);
     }
     public boolean hasShopItem(User user, MessageChannel channel, String itemId, String itemName) {
-        manageUser(user, channel);
+        manageUser(user);
         BasicDBObject searchQueryUUID = new BasicDBObject("discordId", user.getId());
         doc = col.find(searchQueryUUID).projection(
                 Projections.fields(
@@ -118,7 +114,7 @@ public class GameManager {
         return doc != null;
     }
     public int getFarmValue(User user, MessageChannel channel) {
-        manageUser(user, channel);
+        manageUser(user);
         BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
         doc = col.find(searchQuery).projection(
                 Projections.fields(
@@ -129,7 +125,7 @@ public class GameManager {
         return doc.getInteger("farmValue");
     }
     public int getTokens(User user, MessageChannel channel) {
-        manageUser(user, channel);
+        manageUser(user);
         BasicDBObject searchQuery = new BasicDBObject("discordId", user.getId());
         doc = col.find(searchQuery).projection(
                 Projections.fields(

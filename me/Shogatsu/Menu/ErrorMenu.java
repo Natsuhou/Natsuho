@@ -42,4 +42,10 @@ public class ErrorMenu {
                 .setTitle(":x: Account Already Exists!")
                 .setDescription("User already has an account");
     }
+    public EmbedBuilder invalidLeagueAccount() {
+        return builder
+                .setTitle(":x: Invalid League Account")
+                .setThumbnail("https://i.imgur.com/bS4Oa2p.png")
+                .setDescription("Please enter a valid NA summoner name!");
+    }
 }

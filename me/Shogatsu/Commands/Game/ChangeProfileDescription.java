@@ -16,7 +16,6 @@ public class ChangeProfileDescription extends Command {
     public ChangeProfileDescription() {
         this.name = "cd";
         this.cooldown = 5;
-        this.help = "Used to change your profile description!";
     }
     @Override
     protected void execute(@NotNull CommandEvent e) {
@@ -28,7 +27,7 @@ public class ChangeProfileDescription extends Command {
             GameMenu menu = new GameMenu(e.getAuthor(), e.getChannel());
 
             manager.setDescription(e.getAuthor(), e.getArgs(), e.getChannel());
-            e.reply(menu.setDescriptionMenu().build());
+            e.reply(menu.setDescription().build());
         } else {
             e.reply(errorMenu.invalidAccount().build());
         }
